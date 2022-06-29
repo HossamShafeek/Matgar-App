@@ -16,13 +16,7 @@ import 'package:shop_app/shared/cubit/cubit.dart';
 import 'package:shop_app/shared/cubit/states.dart';
 import 'package:shop_app/shared/styles/icon_broken.dart';
 
-class ProfileScreen extends StatefulWidget {
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
@@ -241,5 +235,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-
 }
+

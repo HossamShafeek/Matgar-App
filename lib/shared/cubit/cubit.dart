@@ -8,12 +8,14 @@ import 'package:shop_app/models/carts_model.dart';
 import 'package:shop_app/models/change_carts_model.dart';
 import 'package:shop_app/models/categories_model.dart';
 import 'package:shop_app/models/change_favorites_model.dart';
+import 'package:shop_app/models/change_password_model.dart';
 import 'package:shop_app/models/faqs_model.dart';
 import 'package:shop_app/models/favourites_model.dart';
 import 'package:shop_app/models/home_model.dart';
 import 'package:shop_app/models/login_model.dart';
 import 'package:shop_app/models/orders_model.dart';
 import 'package:shop_app/models/product_details_model.dart';
+import 'package:shop_app/models/search_model.dart';
 import 'package:shop_app/shared/components/constants.dart';
 import 'package:shop_app/shared/cubit/states.dart';
 import 'package:shop_app/shared/network/end_points.dart';
@@ -320,25 +322,68 @@ class ShopCubit extends Cubit<ShopStates> {
       token: token,
     ).then((value) {
       emit(ShopSuccessCancelOrderState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(ShopErrorCancelOrderState());
     });
   }
 
   bool isShowPassword1 = true;
 
-  void changePasswordVisibility1 (){
-    isShowPassword1= !isShowPassword1;
+  void changePasswordVisibility1() {
+    isShowPassword1 = !isShowPassword1;
     emit(ShopChangePasswordVisibility1State());
   }
+
   bool isShowPassword2 = true;
 
-  void changePasswordVisibility2 (){
-    isShowPassword2= !isShowPassword2;
+  void changePasswordVisibility2() {
+    isShowPassword2 = !isShowPassword2;
     emit(ShopChangePasswordVisibility2State());
   }
 
+  ChangePasswordModel changePasswordModel;
 
+  void changePassword({
+    @required String currentPassword,
+    @required String newPassword,
+  }) {
+    emit(ShopLoadingChangePasswordState());
+    DioHelper.postData(
+      url: CHANGE_PASSWORD,
+      token: token,
+      data: {
+        'current_password':currentPassword,
+        'new_password':newPassword,
+      },
+    ).then((value) {
+      changePasswordModel=ChangePasswordModel.fromJson(value.data);
+      print('=======================================');
+      print(value.data);
+      print('=======================================');
+      emit(ShopSuccessChangePasswordState(changePasswordModel));
+    }).catchError((error){
+      emit(ShopErrorChangePasswordState(error.toString()));
+      print(error.toString());
+    });
+  }
+
+  SearchModel searchModel;
+
+  void search({@required String text}) {
+    emit(ShopLoadingSearchState());
+    DioHelper.postData(
+      url: PRODUCTS_SEARCH,
+      token: token,
+      data: {
+        'text':text,
+      },
+    ).then((value) {
+      searchModel = SearchModel.fromJson(value.data);
+      emit(ShopSuccessSearchState());
+    }).catchError((error){
+      emit(ShopErrorSearchState(error.toString()));
+    });
+  }
 
   File profileImage;
 

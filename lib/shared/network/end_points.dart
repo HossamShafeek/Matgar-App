@@ -22,5 +22,6 @@ const ORDERS = 'orders';
 
 const FAQS = 'faqs';
 
+const CHANGE_PASSWORD = 'change-password';
 
-
+const PRODUCTS_SEARCH = 'products/search';

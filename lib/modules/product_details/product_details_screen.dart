@@ -34,21 +34,18 @@ class ProductDetailsScreen extends StatelessWidget {
                   itemBuilder: (context, index, n) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
-                      child: Hero(
-                        tag: cubit.productDetailsModel.productData.id,
-                        child: CachedNetworkImage(
-                          imageUrl: cubit.productDetailsModel.productData.images[index],
-                          fit: BoxFit.cover,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Center(
-                            child: CircularProgressIndicator(
-                              value: downloadProgress.progress,
-                              strokeWidth: 3,
-                            ),
+                      child: CachedNetworkImage(
+                        imageUrl: cubit.productDetailsModel.productData.images[index],
+                        fit: BoxFit.cover,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: CircularProgressIndicator(
+                            value: downloadProgress.progress,
+                            strokeWidth: 3,
                           ),
-                          errorWidget: (context, url, error) => Icon(
-                            Icons.error,
-                          ),
+                        ),
+                        errorWidget: (context, url, error) => Icon(
+                          Icons.error,
                         ),
                       ),
                     );

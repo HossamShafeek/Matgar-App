@@ -1,3 +1,4 @@
+import 'package:shop_app/models/change_password_model.dart';
 import 'package:shop_app/models/login_model.dart';
 
 abstract class ShopStates {}
@@ -42,7 +43,9 @@ class ShopErrorGetFavoritesState extends ShopStates {
   ShopErrorGetFavoritesState(this.error);
 }
 
-class ShopSuccessGetUserDataState extends ShopStates {}
+class ShopSuccessGetUserDataState extends ShopStates {
+
+}
 
 class ShopLoadingGetUserDataState extends ShopStates {}
 
@@ -162,3 +165,27 @@ class ShopChangePasswordVisibility1State extends ShopStates {}
 
 class ShopChangePasswordVisibility2State extends ShopStates {}
 
+
+class ShopLoadingChangePasswordState extends ShopStates {
+
+}
+
+class ShopSuccessChangePasswordState extends ShopStates {
+  final ChangePasswordModel changePasswordModel;
+  ShopSuccessChangePasswordState(this.changePasswordModel);
+}
+
+class ShopErrorChangePasswordState extends ShopStates {
+  final String error;
+
+  ShopErrorChangePasswordState(this.error);
+}
+
+class ShopLoadingSearchState extends ShopStates{}
+
+class ShopSuccessSearchState extends ShopStates{}
+
+class ShopErrorSearchState extends ShopStates{
+  final error;
+  ShopErrorSearchState(this.error);
+}

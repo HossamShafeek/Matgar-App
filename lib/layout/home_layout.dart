@@ -11,7 +11,6 @@ import 'package:shop_app/shared/components/components.dart';
 import 'package:shop_app/shared/components/constants.dart';
 import 'package:shop_app/shared/cubit/cubit.dart';
 import 'package:shop_app/shared/cubit/states.dart';
-import 'package:shop_app/shared/network/local/cache_helper.dart';
 import 'package:shop_app/shared/styles/icon_broken.dart';
 
 class HomeLayout extends StatelessWidget {
@@ -291,19 +290,16 @@ class HomeLayout extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Hero(
-                        tag: cubit.homeModel.data.products[index].id,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: model.data.products[index].image,
-                          placeholder: (context, url) => Center(
-                              child: CircularProgressIndicator(
-                            strokeWidth: 1.5,
-                          )),
-                          errorWidget: (context, url, error) => Icon(
-                            Icons.error,
-                            color: indigo,
-                          ),
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: model.data.products[index].image,
+                        placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                          strokeWidth: 1.5,
+                        )),
+                        errorWidget: (context, url, error) => Icon(
+                          Icons.error,
+                          color: indigo,
                         ),
                       ),
                     ),

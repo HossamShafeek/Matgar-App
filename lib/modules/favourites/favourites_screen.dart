@@ -126,21 +126,18 @@ class FavouritesScreen extends StatelessWidget {
                     ),
                     width: 90,
                     height: double.infinity,
-                    child: Hero(
-                      tag: model[index].product.id,
-                      child: CachedNetworkImage(
-                        imageUrl: model[index].product.image,
-                        fit: BoxFit.cover,
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 1.5,
-                          ),
+                    child: CachedNetworkImage(
+                      imageUrl: model[index].product.image,
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1.5,
                         ),
-                        errorWidget: (context, url, error) => Icon(
-                          Icons.error,
-                          color: indigo,
-                        ),
+                      ),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.error,
+                        color: indigo,
                       ),
                     ),
                   ),

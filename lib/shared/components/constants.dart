@@ -16,7 +16,7 @@ Color secondaryDark1 =Color(0xff1E2336);
 Color primaryDark2 =Color(0xff26272c);
 Color secondaryDark2 =Color(0xff292c35);
 
-var base64Image;
+String base64Image;
 
 String token ;
 
